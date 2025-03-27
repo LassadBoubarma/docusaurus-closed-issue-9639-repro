@@ -1,41 +1,27 @@
-# Website
+# Bug reproduction verification for (Closed) [Docusaurus Issue #9639](https://github.com/facebook/docusaurus/issues/9639)
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository documents a reproduction attempt for a previously reported (now closed) issue in Docusaurus CLI related to specifying custom configuration files.
 
-### Installation
+## 📝 Steps Clearly Followed to Verify:
 
-```
-$ yarn
-```
+### Step 1: Created a new Docusaurus site
 
-### Local Development
+```bash
+npx create-docusaurus@latest my-website classic
+cd my-website
 
-```
-$ yarn start
-```
+2: Renamed the default configuration file
+Renamed docusaurus.config.js to custom-config.js
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Executed the Docusaurus CLI with custom configuration
+The CLI threw the following clear and explicit error, consistent with the original issue’s reported:
+[ERROR] Error: No config file found in site dir ``.
+Expected one of:
+- `docusaurus.config.ts`
+- `docusaurus.config.mts`
+- `docusaurus.config.cts`
+- `docusaurus.config.js`
+- `docusaurus.config.mjs`
+- `docusaurus.config.cjs`
+You can provide a custom config path with the `--config` option.
 
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
